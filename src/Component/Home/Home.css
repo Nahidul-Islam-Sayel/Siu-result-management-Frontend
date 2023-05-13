@@ -1,0 +1,231 @@
+.About-headline {
+  text-align: center;
+}
+.about-me {
+  margin-top: 50px;
+}
+.about-full-body {
+  padding: 50px;
+}
+.about-box {
+  display: flex;
+
+  box-shadow: 5px 5px 10px gray;
+}
+.about-pic {
+  width: 50%;
+}
+.about-pic img {
+  width: 95%;
+  height: 100%;
+}
+.about-skills {
+  width: 50%;
+  padding: 35px;
+  font-family: "Poppins Light";
+}
+.about-skills ul {
+  font-family: "Poppins SemiBold";
+  margin-left: 30px;
+}
+li {
+  color: red;
+  size: 20px;
+}
+.skill-color {
+  color: black;
+}
+.about-skills-text {
+  margin-bottom: 30px;
+}
+.line {
+  font-family: "Poppins Light";
+}
+@media screen and (max-width: 786px) {
+  .about-box {
+    display: inline;
+    align-items: center;
+  }
+  .about-pic {
+    width: 100%;
+  }
+  .about-skills {
+    width: 100%;
+  }
+}
+.carouselCaption {
+  margin-bottom: 40%;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: 60px;
+}
+.carousel-img {
+  opacity: 90%;
+}
+.deatext {
+  margin: 10px;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+
+.box1 {
+  background-color: #1eaaf1;
+}
+.box2 {
+  background-color: #8cc152;
+}
+.box3 {
+  background-color: #5d50c6;
+}
+.box4 {
+  background-color: #f1453d;
+}
+.circle {
+  height: 70px;
+  width: 70px;
+  background-color: white;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+}
+.icon {
+  height: 40px;
+  width: 40px;
+  margin-top: 12px;
+}
+.deatext h5 {
+  font-size: 23px;
+  font-weight: bold;
+  font-style: italic;
+}
+.deatext p {
+  color: gainsboro;
+}
+.offer {
+  padding: 50px;
+}
+.offer h2,
+h4 {
+  color: #333333;
+  font-weight: bold;
+  font-style: italic;
+}
+.offer p {
+  color: #a0a0a0;
+}
+.secondpart {
+  background-color: #fafafa;
+}
+.circle11 {
+  height: 70px;
+  width: 70px;
+  background-color: #1eaaf1;
+  border-radius: 50%;
+  text-align: center;
+  display: inline-block;
+}
+.bondu {
+  color: #fda638;
+}
+
+.bg-2 {
+  background: linear-gradient(rgba(0, 0, 0, 0.333), rgba(0, 0, 0, 0.642)),
+    url(../../asset/Image/graduate.jpg) center/cover no-repeat fixed;
+  min-height: 40vh;
+  color: white;
+}
+
+.title h1 {
+  text-align: center;
+
+  font-weight: bold;
+  font-style: italic;
+}
+.title {
+  padding: 50px;
+}
+.part1 {
+  color: #5d50c6;
+}
+.part2 {
+  color: #fda638;
+}
+.title p {
+  text-align: center;
+  color: #a0a0a0;
+}
+/* cources */
+.rounded-start {
+  height: 200px;
+}
+/* cources */
+/* contract section */
+.contractimg {
+  background: linear-gradient(rgba(0, 0, 0, 0.333), rgba(0, 0, 0, 0.642)),
+    url(../../asset/Image/question-g619ca985d_640.jpg) center/cover no-repeat;
+}
+.contract {
+  padding: 50px;
+}
+.contractform {
+  background-color: #1eaaf1;
+  color: white;
+  text-align: center;
+}
+.contractform h3 {
+  font-size: 40px;
+  margin-top: 50px;
+}
+.contact-form .form-field {
+  position: relative;
+  margin: 32px 0;
+}
+.contact-form .input-text {
+  display: block;
+  background-color: #1eaaf1;
+  width: 100%;
+  height: 46px;
+  border-width: 0 0 2px 0;
+  border-color: #5543ca;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+}
+.contact-form .input-text:focus {
+  outline: none;
+}
+.contact-form .input-text:focus + .label,
+.contact-form .input-text.not-empty + .label {
+  -webkit-transform: translateY(-24px);
+  transform: translateY(-24px);
+}
+.contact-form .label {
+  position: absolute;
+  left: 20px;
+  bottom: 11px;
+  font-size: 18px;
+  line-height: 26px;
+  font-weight: 400;
+  color: white;
+  cursor: text;
+  transition: -webkit-transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+}
+.contact-form .submit-btn {
+  display: inline-block;
+  background-color: #fda638;
+
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  width: 200px;
+  cursor: pointer;
+}
+
+/* contract section */

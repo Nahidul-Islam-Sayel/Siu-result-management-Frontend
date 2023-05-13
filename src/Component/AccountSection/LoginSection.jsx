@@ -1,35 +1,48 @@
 import axios from 'axios';
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
+import { userContext } from '../../App';
 import siubd from '../../asset/Image/SIULOGO.png';
+import './Loginsection.css';
+
 const LoginSection = () => {
+    const [login, setLogin] = useContext(userContext);
     const [newStudent, setNewStudent] = useState({
-        StudentsName: "",
+        StudentsID: "",
         password_1: ""
     })
+
+
+    const [Students, setStudents] = useState(true);
+    const [Teachers, seTeachers] = useState(false);
+    const [Admin, setAdmin] = useState(false);
+    const [Controller, setController] = useState(false);
+    const [AccountSection, setAccountSection] = useState(false);
+    const [LoginSuccessful, setLoginSuccessful] = useState(false);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewStudent({
             ...newStudent,
             [name]: value,
         })
-        // console.log(name, value)
+        console.log(name, value)
 
     }
     const userSubmit = (e) => {
         e.preventDefault();
-        const { StudentsName, password_1 } = newStudent;
-        console.log(StudentsName, password_1)
+        const { StudentsID, password_1 } = newStudent;
+        console.log(StudentsID, password_1)
         axios.post('http://localhost:5000/Singup/login', newStudent)
-            .then(res => ((res.data.error) ? alert(res.data.error) : (alert(res.data.message), sessionStorage.setItem('username', StudentsName), sessionStorage.setItem("Token", res.data.access_token), console.log(res))));
+            .then(res => ((res.data.error) ? alert(res.data.error) : (setLoginSuccessful(true), setStudents(false), sessionStorage.setItem('StudentsID', StudentsID), sessionStorage.setItem("Token", res.data.access_token), setLogin(true))));
     }
-    const [Students, setStudents] = useState(true);
-    const [Teachers, seTeachers] = useState(false);
-    const [Admin, setAdmin] = useState(false);
-    const [Controller, setController] = useState(false);
-    const [AccountSection, setAccountSection] = useState(false);
+    useEffect(() => {
+        axios.post('http://localhost:5000/Singup/result', sessionStorage.getItem("StudentsID"))
+            .then(res => console.log(res));
+    }, [])
     return (
         <div class="flex items-center min-h-screen p-4 bg-gray-100 justify-center">
-            <div
+            {!LoginSuccessful && <div
                 class="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md"
             >
                 <div
@@ -45,10 +58,10 @@ const LoginSection = () => {
                         <div class="flex flex-col space-y-1">
                             <label for="email" class="text-sm font-semibold text-gray-500">Your Name</label>
                             <input
-                                type="text"
-                                id="name"
-                                name="StudentsName"
-                                value={newStudent.StudentsName}
+                                type="number"
+                                id="StudentsID"
+                                name="StudentsID"
+                                value={newStudent.StudentsID}
                                 onChange={handleChange}
                                 autofocus
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
@@ -495,7 +508,35 @@ const LoginSection = () => {
                         </div>
                     </form>
                 </div>}
-            </div>
+
+            </div>}
+            {
+                LoginSuccessful && <div id='card' class="animated fadeIn">
+                    <div id='upper-side'>
+
+                        <svg version="1.1" id="checkmark" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" space="preserve">
+                            <path d="M131.583,92.152l-0.026-0.041c-0.713-1.118-2.197-1.447-3.316-0.734l-31.782,20.257l-4.74-12.65
+                      c-0.483-1.29-1.882-1.958-3.124-1.493l-0.045,0.017c-1.242,0.465-1.857,1.888-1.374,3.178l5.763,15.382
+                      c0.131,0.351,0.334,0.65,0.579,0.898c0.028,0.029,0.06,0.052,0.089,0.08c0.08,0.073,0.159,0.147,0.246,0.209
+                      c0.071,0.051,0.147,0.091,0.222,0.133c0.058,0.033,0.115,0.069,0.175,0.097c0.081,0.037,0.165,0.063,0.249,0.091
+                      c0.065,0.022,0.128,0.047,0.195,0.063c0.079,0.019,0.159,0.026,0.239,0.037c0.074,0.01,0.147,0.024,0.221,0.027
+                      c0.097,0.004,0.194-0.006,0.292-0.014c0.055-0.005,0.109-0.003,0.163-0.012c0.323-0.048,0.641-0.16,0.933-0.346l34.305-21.865
+                      C131.967,94.755,132.296,93.271,131.583,92.152z" />
+                            <circle fill="none" stroke="#ffffff" stroke-width="5" stroke-miterlimit="10" cx="109.486" cy="104.353" r="32.53" />
+                        </svg>
+                        <h3 id='status'>
+                            Success
+                        </h3>
+                    </div>
+                    <div id='lower-side'>
+                        <p id='message'>
+                            your Are Successfully Login
+                        </p>
+                        <Link to="/StudentsProfile">      <a href="#" id="contBtn">Profile</a> </Link>
+                    </div>
+                </div>
+
+            }
         </div>
     );
 };
