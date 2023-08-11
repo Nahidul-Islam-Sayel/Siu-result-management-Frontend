@@ -1,48 +1,179 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { userContext } from '../../App';
 import siubd from '../../asset/Image/SIULOGO.png';
 import './Loginsection.css';
 
 const LoginSection = () => {
-    const [login, setLogin] = useContext(userContext);
+    const [login, setLogin, Adminlogin, setAdminlogin, teacherslogin, setTeacherslogin] = useContext(userContext);
     const [newStudent, setNewStudent] = useState({
         StudentsID: "",
         password_1: ""
+    });
+    const [department, setNewDepartment] = useState({
+        Department: "",
+        password_2: ""
+    });
+    const [TeachersInfo, setTeachersInfo] = useState({
+        name: "",
+        password: ""
     })
-
-
     const [Students, setStudents] = useState(true);
     const [Teachers, seTeachers] = useState(false);
     const [Admin, setAdmin] = useState(false);
     const [Controller, setController] = useState(false);
     const [AccountSection, setAccountSection] = useState(false);
-    const [LoginSuccessful, setLoginSuccessful] = useState(false);
-
+    const [teachersProfile, setteachersProfile] = useState(false);
     const handleChange = (e) => {
         const { name, value } = e.target;
         setNewStudent({
             ...newStudent,
             [name]: value,
         })
-        console.log(name, value)
+    }
+    const handleChangeDepartment = (e) => {
+        const { name, value } = e.target;
+        setNewDepartment({
+            ...department,
+            [name]: value,
+        })
+    }
+    const handleTeachersChange = (e) => {
+        const { name, value } = e.target;
+        setTeachersInfo({
+            ...TeachersInfo,
+            [name]: value,
+        })
+    }
+    const [departmentPro, setDepartmentPro] = useState(false);
+    const [teachersPro, setTeachersPro] = useState(false);
+    const [visible, setVisible] = useState(false);
+    const [visibleR, setVisibleR] = useState(false);
 
-    }
-    const userSubmit = (e) => {
+    // const userSubmit = (e) => {
+    //     e.preventDefault();
+    //     const { StudentsID, password_1 } = newStudent;
+    //     console.log(StudentsID, password_1)
+    //     // axios.post('http://localhost:5000/Singup/login', newStudent)
+    //     //     .then(res => ((res.data.error) ? alert(res.data.error) : (setStudents(false), sessionStorage.setItem('StudentsID', StudentsID), sessionStorage.setItem("Token", res.data.access_token), setLogin(true))));
+    // }
+
+    const AdminLogin = (e) => {
         e.preventDefault();
-        const { StudentsID, password_1 } = newStudent;
-        console.log(StudentsID, password_1)
-        axios.post('http://localhost:5000/Singup/login', newStudent)
-            .then(res => ((res.data.error) ? alert(res.data.error) : (setLoginSuccessful(true), setStudents(false), sessionStorage.setItem('StudentsID', StudentsID), sessionStorage.setItem("Token", res.data.access_token), setLogin(true))));
-    }
+        const { Department, password_2 } = department;
+        if (Department && password_2) {
+            axios.post('http://localhost:5000/LoginDepartmentCSE/login', department)
+                .then(res => {
+                    if (res.data.error) {
+                        console.log('Error:', res.data.error);
+                        setVisibleR(true);
+                        console.log('hello i am here');
+                    }
+                    else {
+                        sessionStorage.setItem('Department', Department);
+                        sessionStorage.setItem('DepartmentLogin', true);
+                        sessionStorage.setItem('Token', res.data.access_token);
+                        console.log('Success:', res.data);
+                        setDepartmentPro(true);
+                        console.log(departmentPro);
+                        setVisible(true);
+
+                        console.log(visible);
+                        console.log('i am not here');
+
+
+                    }
+                });
+        }
+    };
+    const TeachersLogin = (e) => {
+        e.preventDefault();
+        const { name, password } = TeachersInfo;
+        if (name && password) {
+            axios.post('http://localhost:5000/Teachers/login', TeachersInfo)
+                .then(res => {
+                    if (res.data.error) {
+                        console.log('Error:', res.data.error);
+                        setVisibleR(true);
+                        console.log('hello i am here');
+                    }
+                    else {
+                        sessionStorage.setItem('Teachers', name);
+                        sessionStorage.setItem('TeachersLogin', true);
+                        sessionStorage.setItem('Token', res.data.access_token);
+                        console.log('Success:', res.data);
+                        setTeachersPro(true);
+                        console.log(teachersPro)
+                        setVisible(true);
+
+                        console.log(visible);
+                        console.log('i am not here');
+
+
+                    }
+                });
+        }
+    };
     useEffect(() => {
-        axios.post('http://localhost:5000/Singup/result', sessionStorage.getItem("StudentsID"))
-            .then(res => console.log(res));
-    }, [])
+        if (visible) {
+            const timeout = setTimeout(() => {
+                setVisible(false);
+            }, 1000);
+
+            return () => clearTimeout(timeout);
+        }
+
+    }, [visible]);
+    useEffect(() => {
+        if (visibleR) {
+            const timeout = setTimeout(() => {
+                setVisibleR(false);
+
+            }, 1000);
+            return () => clearTimeout(timeout);
+        }
+    }, [visibleR]);
+    let navigate = useNavigate();
+    useEffect(() => {
+
+        setTimeout(() => {
+            departmentPro && navigate("/DepartmentCSE", { replace: true });
+            departmentPro && setAdminlogin(true);
+
+        }, 1500);
+    }, [departmentPro, navigate])
+    useEffect(() => {
+
+        setTimeout(() => {
+            teachersPro && navigate("/TeachersProfile", { replace: true });
+            teachersPro && setTeacherslogin(true);
+
+        }, 1500);
+    }, [teachersPro, navigate])
     return (
         <div class="flex items-center min-h-screen p-4 bg-gray-100 justify-center">
-            {!LoginSuccessful && <div
+            <div
+                className={`fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end transition-all duration-500 ${visible ? '' : 'hidden'
+                    }`}
+            >
+                <div className="max-w-xl w-full bg-green-400  text-white shadow-lg rounded-lg pointer-events-auto h-10 text-center ">
+                    Login Successful
+
+
+                </div>
+            </div>
+            <div
+                className={`fixed inset-0 flex items-end justify-center px-4 py-6 pointer-events-none sm:p-6 sm:items-start sm:justify-end transition-all duration-500 ${visibleR ? '' : 'hidden'
+                    }`}
+            >
+                <div className="max-w-xl w-full bg-red-400  text-white shadow-lg rounded-lg pointer-events-auto h-10 text-center ">
+                    Someing Is Wrong Please Try Again
+
+
+                </div>
+            </div>
+            <div
                 class="flex flex-col overflow-hidden bg-white rounded-md shadow-lg max md:flex-row md:flex-1 lg:max-w-screen-md"
             >
                 <div
@@ -93,7 +224,7 @@ const LoginSection = () => {
                             <button
                                 type="submit"
                                 class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-cyan-600  rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
-                                onClick={userSubmit}
+                                onClick=""
                             >
                                 Log in
                             </button>
@@ -107,7 +238,7 @@ const LoginSection = () => {
                             <div class="flex flex-col space-y-4">
                                 <a
                                     href="#"
-                                    class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-gray-800 rounded-md group hover:bg-gray-800 focus:outline-none"
+                                    className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-gray-800 rounded-md group hover:bg-gray-800 focus:outline-none"
                                 >
                                     <span>
                                         <svg
@@ -126,7 +257,7 @@ const LoginSection = () => {
                                 </a>
                                 <a
                                     href="#"
-                                    class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
+                                    className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
                                 >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
@@ -149,7 +280,10 @@ const LoginSection = () => {
                             <input
                                 type="text"
                                 id="name"
+                                name="name"
                                 autofocus
+                                value={TeachersInfo.name}
+                                onChange={handleTeachersChange}
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                             />
                         </div>
@@ -161,6 +295,9 @@ const LoginSection = () => {
                             <input
                                 type="password"
                                 id="password"
+                                name="password"
+                                value={TeachersInfo.password}
+                                onChange={handleTeachersChange}
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                             />
                         </div>
@@ -176,6 +313,7 @@ const LoginSection = () => {
                             <button
                                 type="submit"
                                 class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-cyan-600  rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                                onClick={TeachersLogin}
                             >
                                 Log in
                             </button>
@@ -227,13 +365,24 @@ const LoginSection = () => {
                     <h3 class="my-4 text-2xl font-semibold text-gray-700">Department Login</h3>
                     <form action="#" class="flex flex-col space-y-5">
                         <div class="flex flex-col space-y-1">
-                            <label for="email" class="text-sm font-semibold text-gray-500">Your Name</label>
-                            <input
-                                type="text"
-                                id="name"
+                            <label for="email" class="text-sm font-semibold text-gray-500">Department Name</label>
+
+                            <select type="text"
+
                                 autofocus
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
-                            />
+                                id="name"
+                                name="Department"
+                                value={department.Department}
+                                onChange={handleChangeDepartment}
+                            >
+                                <option value=""></option>
+                                <option value="CSE">CSE</option>
+                                <option value="BBA">BBA</option>
+                                <option value="LLB">LLB</option>
+                                <option value="ECE">ECE</option>
+
+                            </select>
                         </div>
                         <div class="flex flex-col space-y-1">
                             <div class="flex items-center justify-between">
@@ -243,6 +392,9 @@ const LoginSection = () => {
                             <input
                                 type="password"
                                 id="password"
+                                name="password_2"
+                                value={department.password_2}
+                                onChange={handleChangeDepartment}
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                             />
                         </div>
@@ -258,6 +410,7 @@ const LoginSection = () => {
                             <button
                                 type="submit"
                                 class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-cyan-600  rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                                onClick={AdminLogin}
                             >
                                 Log in
                             </button>
@@ -509,36 +662,11 @@ const LoginSection = () => {
                     </form>
                 </div>}
 
-            </div>}
-            {
-                LoginSuccessful && <div id='card' class="animated fadeIn">
-                    <div id='upper-side'>
+            </div>
 
-                        <svg version="1.1" id="checkmark" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" space="preserve">
-                            <path d="M131.583,92.152l-0.026-0.041c-0.713-1.118-2.197-1.447-3.316-0.734l-31.782,20.257l-4.74-12.65
-                      c-0.483-1.29-1.882-1.958-3.124-1.493l-0.045,0.017c-1.242,0.465-1.857,1.888-1.374,3.178l5.763,15.382
-                      c0.131,0.351,0.334,0.65,0.579,0.898c0.028,0.029,0.06,0.052,0.089,0.08c0.08,0.073,0.159,0.147,0.246,0.209
-                      c0.071,0.051,0.147,0.091,0.222,0.133c0.058,0.033,0.115,0.069,0.175,0.097c0.081,0.037,0.165,0.063,0.249,0.091
-                      c0.065,0.022,0.128,0.047,0.195,0.063c0.079,0.019,0.159,0.026,0.239,0.037c0.074,0.01,0.147,0.024,0.221,0.027
-                      c0.097,0.004,0.194-0.006,0.292-0.014c0.055-0.005,0.109-0.003,0.163-0.012c0.323-0.048,0.641-0.16,0.933-0.346l34.305-21.865
-                      C131.967,94.755,132.296,93.271,131.583,92.152z" />
-                            <circle fill="none" stroke="#ffffff" stroke-width="5" stroke-miterlimit="10" cx="109.486" cy="104.353" r="32.53" />
-                        </svg>
-                        <h3 id='status'>
-                            Success
-                        </h3>
-                    </div>
-                    <div id='lower-side'>
-                        <p id='message'>
-                            your Are Successfully Login
-                        </p>
-                        <Link to="/StudentsProfile">      <a href="#" id="contBtn">Profile</a> </Link>
-                    </div>
-                </div>
-
-            }
         </div>
     );
 };
+
 
 export default LoginSection;

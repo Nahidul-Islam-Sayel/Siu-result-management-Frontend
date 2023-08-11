@@ -1,0 +1,9 @@
+.mainbox {
+  display: flex;
+}
+.card-text img {
+  height: 80px;
+}
+.xyz {
+  background: linear-gradient(#06b6d4, #17a2b8);
+}

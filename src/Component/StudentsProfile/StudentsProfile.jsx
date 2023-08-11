@@ -206,7 +206,7 @@ const StudentsProfile = () => {
                                                 <h5 className="font-mono font-bold">
                                                     Current Semister
                                                 </h5>
-                                                <h1>7</h1>
+                                                <h1>8</h1>
                                             </div>
                                         </div>
                                     </div>

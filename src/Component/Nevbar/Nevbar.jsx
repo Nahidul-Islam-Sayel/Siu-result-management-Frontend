@@ -5,13 +5,13 @@ import siulogo from '../../asset/Image/SIULOGO.png';
 import "./Nevbar.css";
 const Nevbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [login, setLogin] = useContext(userContext);
+    const [login, setLogin, Adminlogin, setAdminlogin, teacherslogin, setTeacherslogin] = useContext(userContext);
     const toggle = () => setIsOpen(!isOpen);
     const logout = () => {
         setLogin(false);
         sessionStorage.clear();
-        window.location.reload(false);
-
+        setAdminlogin(false);
+        setTeacherslogin(false);
 
     }
 
@@ -19,10 +19,10 @@ const Nevbar = () => {
         <div>
             <nav class="bg-cyan-500 h-30 border-b-2 border-cyan-600 shadow-md">
                 <div class="flex items-center justify-center">
-                    <div class="flex flex-col items-center">
-                        <a href="#" class="inline-block mt-3">
-                            <img src={siulogo} class="h-18" alt="Logo" />
-                        </a>
+                    <div class="flex flex-col items-center inline-block mt-3">
+
+                        <img src={siulogo} class="h-18" alt="Logo" />
+
                         <h1 class="text-white text-2xl font-bold font-mono">
                             Sylhet International University
                         </h1>
@@ -32,7 +32,7 @@ const Nevbar = () => {
             <nav className="bg-cyan-500 shadow-lg ">
                 <div className="max-w-6xl mx-auto px-4">
                     <div className="flex justify-between">
-                        <div className="flex space-x-7">
+                        <div className="flex space-x-7 text-lg">
 
                             <div className="md:hidden flex items-center">
                                 <button
@@ -56,48 +56,65 @@ const Nevbar = () => {
                                 className={`${isOpen ? "block" : "hidden"
                                     } md:flex md:items-center md:space-x-1 text-white`}
                             >
-                                <Link to="/">    <a href="#" className="block py-4 text-white px-2 md:p-0   font-bold">
+                                <Link to="/" className="block py-4 text-white px-2 md:p-0   font-bold">
                                     Home
-                                </a></Link>
-                                <a
-                                    href="#"
-                                    className="block py-4 text-white px-2 md:p-0   font-bold"
-                                >
+                                </Link>
+                                <Link to="/" className="block py-4 text-white px-2 md:p-0   font-bold">
+
                                     About
-                                </a>
-                                {(sessionStorage.getItem("StudentsID") || login === true) ?
+                                </Link>
+
+                                {(sessionStorage.getItem("Department") || login === true) ?
                                     (<>
-                                        <Link to="/StudentsProfile">      <a
-                                            href="#"
-                                            className="block py-4 text-white px-2 md:p-0   font-bold"
-                                        >
+                                        <Link to="/DepartmentCSE" className="block py-4 text-white px-2 md:p-0   font-bold">
                                             Profile
-                                        </a></Link>
-                                        <Link to="/">      <a
-                                            href="#"
-                                            className="block py-4 text-white px-2 md:p-0   font-bold"
-                                            onClick={logout}
-                                        >
+                                        </Link>
+
+                                        <Link to="/RegistrationForm" className="block py-4 text-white px-2 md:p-0   font-bold">
+                                            Create Profile
+                                        </Link>
+
+                                        <Link to="/AssignCourse" className="block py-4 text-white px-2 md:p-0   font-bold" >
+                                            Assign Course
+                                        </Link>
+                                        <Link to="/CourseList" className="block py-4 text-white px-2 md:p-0   font-bold" >
+                                            Offered Courses
+                                        </Link>
+                                        <Link to="/" className="block py-4 text-white px-2 md:p-0   font-bold" onClick={logout}>
                                             Logout
-                                        </a></Link>
+                                        </Link>
 
                                     </>) :
-                                    (<Link to="/login">      <a
-                                        href="#"
-                                        className="block py-4 text-white px-2 md:p-0   font-bold"
-                                    >
-                                        Login
-                                    </a></Link>)
+                                    (sessionStorage.getItem("TeachersLogin") || teacherslogin === true) ?
+                                        (<>
+                                            <Link to="/TeachersProfile" className="block py-4 text-white px-2 md:p-0   font-bold">
+                                                Profile
+                                            </Link>
+
+
+                                            <Link to="/" className="block py-4 text-white px-2 md:p-0   font-bold" onClick={logout}>
+                                                Logout
+                                            </Link>
+
+                                        </>)
+                                        :
+                                        (<><Link to="/login" className="block py-4 text-white px-2 md:p-0   font-bold">
+                                            Login
+                                        </Link>
+                                            <Link to=""
+                                                href="#"
+                                                className="block py-4 text-white px-2 md:p-0   font-bold"
+                                            >
+                                                Contact Us
+                                            </Link></>
+                                        )
 
 
 
                                 }
-                                <a
-                                    href="#"
-                                    className="block py-4 text-white px-2 md:p-0   font-bold"
-                                >
-                                    Contact Us
-                                </a>
+
+
+
                             </div>
                         </div>
                     </div>
