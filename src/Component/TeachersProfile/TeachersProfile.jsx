@@ -1,11 +1,12 @@
 import { Line } from 'rc-progress';
 import React, { useEffect, useState } from "react";
 import PieChart from 'react-pie-graph-chart';
+import { Link } from "react-router-dom";
 import Profile from '../../asset/Image/SIULOGO.png';
 const TeachersProfile = () => {
     const [teachersBackground, setTeachersBackground] = useState([]);
+    const [Course, setCourse] = useState([]);
     useEffect(() => {
-
         const username = sessionStorage.getItem('Teachers');
         fetch(`http://localhost:5000/Teachers/Profile?username=${username}`, {
             method: 'GET',
@@ -15,8 +16,19 @@ const TeachersProfile = () => {
             }
         })
             .then(res => res.json())
-
             .then(res => setTeachersBackground(res))
+    }, []);
+    useEffect(() => {
+        const username = sessionStorage.getItem('Teachers');
+        fetch(`http://localhost:5000/Teachers/AssignCourse?teachername=${username}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                "authorization": `Bearer ${sessionStorage.getItem("Token")}`
+            }
+        })
+            .then(res => res.json())
+            .then(res => setCourse(res))
     }, []);
     return (
         <div className="container mt-5 mb-10">
@@ -129,31 +141,31 @@ const TeachersProfile = () => {
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">First</th>
-                            <th scope="col">Last</th>
-                            <th scope="col">Handle</th>
+                            <th scope="col">Course Code</th>
+                            <th scope="col">Semester && Batch</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-                            <td>the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
+
+                        {Course.map(data => (
+                            <tr key={data._id}>
+                                <td>{data.courseName}</td>
+                                <td>
+                                    {/* Map through the semester array */}
+                                    {data.semester.map((semesterData, index) => (
+                                        <Link to={`/viewstudentsList/${semesterData.semester}/${data.courseName}`} key={index}>
+                                            <div>
+                                                Batch: {semesterData.batch}, Semester: {semesterData.semester}
+                                                {/* You can display more fields from the semester object */}
+                                            </div>
+                                        </Link>
+                                    ))}
+                                </td>
+
+                            </tr>
+                        ))}
+
                     </tbody>
                 </table>
             </div>
