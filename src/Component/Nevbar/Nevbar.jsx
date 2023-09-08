@@ -5,14 +5,14 @@ import siulogo from '../../asset/Image/SIULOGO.png';
 import "./Nevbar.css";
 const Nevbar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [login, setLogin, Adminlogin, setAdminlogin, teacherslogin, setTeacherslogin] = useContext(userContext);
+    const [login, setLogin, Adminlogin, setAdminlogin, teacherslogin, setTeacherslogin, Controler, setControler] = useContext(userContext);
     const toggle = () => setIsOpen(!isOpen);
     const logout = () => {
         setLogin(false);
         sessionStorage.clear();
         setAdminlogin(false);
         setTeacherslogin(false);
-
+        setControler(false);
     }
 
     return (
@@ -96,18 +96,30 @@ const Nevbar = () => {
                                                 Logout
                                             </Link>
 
-                                        </>)
-                                        :
-                                        (<><Link to="/login" className="block py-4 text-white px-2 md:p-0   font-bold">
-                                            Login
-                                        </Link>
-                                            <Link to=""
-                                                href="#"
-                                                className="block py-4 text-white px-2 md:p-0   font-bold"
-                                            >
-                                                Contact Us
-                                            </Link></>
-                                        )
+                                        </>) :
+                                        (sessionStorage.getItem("ExamControler") || Controler === true) ?
+                                            (<>
+                                                <Link to="/ControlerProfile" className="block py-4 text-white px-2 md:p-0   font-bold">
+                                                    Profile
+                                                </Link>
+
+
+                                                <Link to="/" className="block py-4 text-white px-2 md:p-0   font-bold" onClick={logout}>
+                                                    Logout
+                                                </Link>
+
+                                            </>)
+                                            :
+                                            (<><Link to="/login" className="block py-4 text-white px-2 md:p-0   font-bold">
+                                                Login
+                                            </Link>
+                                                <Link to=""
+                                                    href="#"
+                                                    className="block py-4 text-white px-2 md:p-0   font-bold"
+                                                >
+                                                    Contact Us
+                                                </Link></>
+                                            )
 
 
 

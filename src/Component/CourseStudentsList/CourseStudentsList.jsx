@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from 'react-router-dom';
 const CourseStudentsList = () => {
     const { id } = useParams();
-    const { course } = useParams();
+    const { course, credit } = useParams();
     const [Students, setStudents] = useState([])
     useEffect(() => {
 
@@ -40,7 +40,7 @@ const CourseStudentsList = () => {
                             <td>{data.roll}</td>
                             <td>{data.registration_number}</td>
                             <td>
-                                <Link to={`/AddNumber/${course}/${data.roll}/${id}/${data.name}/${data.registration_number}`}>Add</Link>
+                                <Link to={`/AddNumber/${course}/${data.roll}/${id}/${data.name}/${data.registration_number}/${credit}`}>Add</Link>
                             </td>
                         </tr>
                     ))}

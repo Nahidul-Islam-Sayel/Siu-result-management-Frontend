@@ -6,12 +6,13 @@ const AddNumber = () => {
     const [loginpage, setLoginpage] = useState(false);
     const [visible, setVisible] = useState(false);
     const [visibleR, setVisibleR] = useState(false);
-    const { course, id, semester, name, registation } = useParams();
+    const { course, id, semester, name, registation, credit } = useParams();
     const [number, setNewNumber] = useState({
         Midterm: "",
         Sessional: "",
         Final: "",
         Roll: id,
+        CourseHoure: credit,
         CourseCode: course,
         semester: semester,
         name: name,

@@ -154,7 +154,7 @@ const TeachersProfile = () => {
                                 <td>
                                     {/* Map through the semester array */}
                                     {data.semester.map((semesterData, index) => (
-                                        <Link to={`/viewstudentsList/${semesterData.semester}/${data.courseName}`} key={index}>
+                                        <Link to={`/viewstudentsList/${semesterData.semester}/${data.courseName}/${data.CourseHoure}`} key={index}>
                                             <div>
                                                 Batch: {semesterData.batch}, Semester: {semesterData.semester}
                                                 {/* You can display more fields from the semester object */}

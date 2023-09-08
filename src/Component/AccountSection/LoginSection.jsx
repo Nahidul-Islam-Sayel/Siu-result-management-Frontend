@@ -6,7 +6,7 @@ import siubd from '../../asset/Image/SIULOGO.png';
 import './Loginsection.css';
 
 const LoginSection = () => {
-    const [login, setLogin, Adminlogin, setAdminlogin, teacherslogin, setTeacherslogin] = useContext(userContext);
+    const [login, setLogin, Adminlogin, setAdminlogin, teacherslogin, setTeacherslogin, Controler, setControler] = useContext(userContext);
     const [newStudent, setNewStudent] = useState({
         StudentsID: "",
         password_1: ""
@@ -19,11 +19,16 @@ const LoginSection = () => {
         name: "",
         password: ""
     })
+    const [ControlerInfo, setControlerInfo] = useState({
+        name: "",
+        password: ""
+    })
     const [Students, setStudents] = useState(true);
     const [Teachers, seTeachers] = useState(false);
     const [Admin, setAdmin] = useState(false);
     const [Controller, setController] = useState(false);
     const [AccountSection, setAccountSection] = useState(false);
+    const [controlerPro, setControlerPro] = useState(false);
     const [teachersProfile, setteachersProfile] = useState(false);
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,6 +48,13 @@ const LoginSection = () => {
         const { name, value } = e.target;
         setTeachersInfo({
             ...TeachersInfo,
+            [name]: value,
+        })
+    }
+    const handleControlerChange = (e) => {
+        const { name, value } = e.target;
+        setControlerInfo({
+            ...ControlerInfo,
             [name]: value,
         })
     }
@@ -115,6 +127,37 @@ const LoginSection = () => {
                 });
         }
     };
+    const ControlerLogin = (e) => {
+        e.preventDefault();
+        const { name, password } = ControlerInfo;
+        console.log(name, password)
+        if (name && password) {
+            axios.post('http://localhost:5000/Controler/login', ControlerInfo)
+                .then(res => {
+                    if (res.data.error) {
+                        console.log('Error:', res.data.error);
+                        setVisibleR(true);
+                        console.log('hello i am here');
+                    }
+                    else {
+                        sessionStorage.setItem('ExamControler', name);
+                        sessionStorage.setItem('ExamControler', true);
+
+                        sessionStorage.setItem('Token', res.data.access_token);
+                        console.log('Success:', res.data);
+
+                        setControlerPro(true)
+                        console.log(Controler)
+                        setVisible(true);
+
+
+                        console.log('i am not here');
+
+
+                    }
+                });
+        }
+    };
     useEffect(() => {
         if (visible) {
             const timeout = setTimeout(() => {
@@ -151,6 +194,14 @@ const LoginSection = () => {
 
         }, 1500);
     }, [teachersPro, navigate])
+    useEffect(() => {
+
+        setTimeout(() => {
+            controlerPro && navigate("/ControlerProfile", { replace: true });
+            controlerPro && setControler(true);
+
+        }, 1500);
+    }, [controlerPro, navigate])
     return (
         <div class="flex items-center min-h-screen p-4 bg-gray-100 justify-center">
             <div
@@ -479,7 +530,10 @@ const LoginSection = () => {
                             <input
                                 type="text"
                                 id="name"
+                                name="name"
                                 autofocus
+                                value={ControlerInfo.name}
+                                onChange={handleControlerChange}
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                             />
                         </div>
@@ -491,6 +545,9 @@ const LoginSection = () => {
                             <input
                                 type="password"
                                 id="password"
+                                name="password"
+                                value={ControlerInfo.password}
+                                onChange={handleControlerChange}
                                 class="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                             />
                         </div>
@@ -506,6 +563,7 @@ const LoginSection = () => {
                             <button
                                 type="submit"
                                 class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-cyan-600  rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
+                                onClick={ControlerLogin}
                             >
                                 Log in
                             </button>

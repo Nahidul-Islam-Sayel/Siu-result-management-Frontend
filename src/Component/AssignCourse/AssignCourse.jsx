@@ -12,6 +12,7 @@ const AssignCourse = () => {
     const [allCourses, setallCourses] = useState([]);
     const [RetakeReffred, setRetakeReffred] = useState(false);
     const [visible, setVisible] = useState(false);
+    const [courseData, setCourseData] = useState([]);
     const [visibleR, setVisibleR] = useState(false);
     const [newUser, setNewUser] = useState({
         name: "",
@@ -27,6 +28,7 @@ const AssignCourse = () => {
     const [newAssignCourses, setnewAssignCourses] = useState({
         TeachersName: "",
         CourseName: "",
+        courseHoure: "",
         semesters: [{ semester: "", batch: "" }],
         Department: sessionStorage.getItem("Department"),
     });
@@ -34,6 +36,15 @@ const AssignCourse = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        let selectedCourse;
+        if (name === "CourseName") {
+            selectedCourse = courseData.find(course => course.CourseName === value);
+            console.log(selectedCourse.CreditHours)
+            setnewAssignCourses((prevState) => ({
+                ...prevState,
+                "courseHoure": selectedCourse.CreditHours
+            }));
+        }
         setnewAssignCourses((prevState) => ({
             ...prevState,
             [name]: value,
@@ -197,8 +208,10 @@ const AssignCourse = () => {
             }
         })
             .then(res => res.json())
-            .then(res =>
-                setallCourses(res)
+            .then(res => {
+                setallCourses(res);
+                setCourseData(res);
+            }
             )
     }, []);
 

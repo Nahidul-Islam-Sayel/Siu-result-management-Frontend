@@ -1,9 +1,11 @@
+import { Line } from 'rc-progress';
 import React, { useEffect, useState } from "react";
-import img1 from "../../asset/Image/student-icon-01.svg";
-import img2 from "../../asset/Image/student-icon-02.svg";
-import img4 from "../../asset/Image/teacher-icon-01.svg";
-import img3 from "../../asset/Image/teacher-icon-02.svg";
+import PieChart from 'react-pie-graph-chart';
+import { Link } from 'react-router-dom';
+import Profile from '../../asset/Image/SIULOGO.png';
 const ExamControllerProfile = () => {
+    const [teachersBackground, setTeachersBackground] = useState([]);
+    const [Course, setCourse] = useState([]);
     const [data, setData] = useState();
     let OneOne = [];
     let [result, setResult] = useState([]);
@@ -27,8 +29,7 @@ const ExamControllerProfile = () => {
 
     useEffect(() => {
         fetch(
-            "http://localhost:5000/Singup/Profile?StudentsID=" +
-            sessionStorage.getItem("StudentsID"),
+            "http://localhost:5000/Controler/AllResult",
             {
                 method: "GET",
                 headers: {
@@ -43,8 +44,7 @@ const ExamControllerProfile = () => {
     let sum = 0;
     useEffect(() => {
         fetch(
-            "http://localhost:5000/Singup/result?StudentsID=" +
-            sessionStorage.getItem("StudentsID"),
+            "http://localhost:5000/Controler/Students",
             {
                 method: "GET",
                 headers: {
@@ -55,35 +55,35 @@ const ExamControllerProfile = () => {
         )
             .then((res) => res.json())
             .then((res) => {
-                let filteredResult = res.filter((item) => item.Semister === "1");
+                let filteredResult = res.filter((item) => item.current_semister == "1");
                 if (filteredResult.length > 0) {
                     setOne(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.Semister === "2");
+                filteredResult = res.filter((item) => item.current_semister == "2");
                 if (filteredResult.length > 0) {
                     setTwo(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.Semister === "3");
+                filteredResult = res.filter((item) => item.current_semister == "3");
                 if (filteredResult.length > 0) {
                     setThree(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.Semister === "4");
+                filteredResult = res.filter((item) => item.current_semister == "4");
                 if (filteredResult.length > 0) {
                     setFour(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.Semister === "5");
+                filteredResult = res.filter((item) => item.current_semister == "5");
                 if (filteredResult.length > 0) {
                     setFive(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.Semister === "6");
+                filteredResult = res.filter((item) => item.current_semister == "6");
                 if (filteredResult.length > 0) {
                     setSix(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.Semister === "7");
+                filteredResult = res.filter((item) => item.current_semister == "7");
                 if (filteredResult.length > 0) {
                     setSeve(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.Semister === "8");
+                filteredResult = res.filter((item) => item.current_semister == "8");
                 if (filteredResult.length > 0) {
                     setEight(filteredResult);
                 }
@@ -98,7 +98,7 @@ const ExamControllerProfile = () => {
         setFifith(false)
         setSixth(false)
         setSeventh(false)
-        setEight(false)
+        setEighth(false)
     }
     const handleTwo = () => {
         setFirst(false)
@@ -108,7 +108,7 @@ const ExamControllerProfile = () => {
         setFifith(false)
         setSixth(false)
         setSeventh(false)
-        setEight(false)
+        setEighth(false)
     }
     const handlethree = () => {
         setFirst(false)
@@ -118,7 +118,7 @@ const ExamControllerProfile = () => {
         setFifith(false)
         setSixth(false)
         setSeventh(false)
-        setEight(false)
+        setEighth(false)
     }
     const handleTfour = () => {
         setFirst(false)
@@ -128,7 +128,7 @@ const ExamControllerProfile = () => {
         setFifith(false)
         setSixth(false)
         setSeventh(false)
-        setEight(false)
+        setEighth(false)
     }
     const handlefive = () => {
         setFirst(false)
@@ -138,7 +138,7 @@ const ExamControllerProfile = () => {
         setFifith(true)
         setSixth(false)
         setSeventh(false)
-        setEight(false)
+        setEighth(false)
     }
     const handleSix = () => {
         setFirst(false)
@@ -148,7 +148,7 @@ const ExamControllerProfile = () => {
         setFifith(false)
         setSixth(true)
         setSeventh(false)
-        setEight(false)
+        setEighth(false)
     }
     const handleSeven = () => {
         setFirst(false)
@@ -158,7 +158,7 @@ const ExamControllerProfile = () => {
         setFifith(false)
         setSixth(false)
         setSeventh(true)
-        setEight(false)
+        setEighth(false)
     }
     const handleEight = () => {
         setFirst(false)
@@ -171,218 +171,258 @@ const ExamControllerProfile = () => {
         setEighth(true)
     }
     return (
-        <>
-            {data && (
-                <body className="mt-32 ml-24 mr-24">
-                    <h1 className="font-serif font-bold italic text-xl">
-                        Welcome {data.username} !
-                    </h1>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-3  mt-10">
-                                <div class="card">
-                                    <div class="card-body h-28">
-                                        <div className="row">
-                                            <div className="col-md-5">
-                                                <img src={img1} alt="" />
-                                            </div>
-                                            <div className="col-md-7 ">
-                                                <h5 className="font-mono font-bold">Department</h5>
-                                                <h1>CSE</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-3  mt-10">
-                                <div class="card">
-                                    <div class="card-body h-28">
-                                        <div className="row">
-                                            <div className="col-md-5">
-                                                <img src={img2} alt="" />
-                                            </div>
-                                            <div className="col-md-7 ">
-                                                <h5 className="font-mono font-bold">
-                                                    Current Semister
-                                                </h5>
-                                                <h1>8</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-3  mt-10">
-                                <div class="card">
-                                    <div class="card-body h-28">
-                                        <div className="row">
-                                            <div className="col-md-5">
-                                                <img src={img3} alt="" />
-                                            </div>
-                                            <div className="col-md-7 ">
-                                                <h5 className="font-mono font-bold">Batch</h5>
-                                                <h1>{data.batch}</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-3  mt-10">
-                                <div class="card h-28">
-                                    <div class="card-body">
-                                        <div className="row">
-                                            <div className="col-md-5">
-                                                <img src={img4} alt="" />
-                                            </div>
-                                            <div className="col-md-7 ">
-                                                <h5 className="font-mono font-bold">Total CGPA</h5>
-                                                <h1>{data.CGPA}</h1>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card text-center mt-20">
-                        <div class="card-header">
-                            <ul class="nav nav-tabs card-header-tabs">
-                                <li class="nav-item">
-                                    <a class="nav-link active btn" href="#" onClick={handleOne}>
-                                        1/1
-                                    </a>
-                                </li>
-                                <li class="nav-item ">
-                                    <a class="nav-link active btn" href="#" onClick={handleTwo}>
-                                        1/2
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active  btn" href="#" onClick={handlethree}>
-                                        2/1
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active  btn" href="#" onClick={handleTfour}>
-                                        2/2
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active  btn" href="#" onClick={handlefive}>
-                                        3/1
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active  btn" href="#" onClick={handleSix}>
-                                        3/2
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active  btn" href="#" onClick={handleSeven}>
-                                        4/1
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active  btn" href="#" onClick={handleEight}>
-                                        4/2
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
+        <div className="container mt-5 mb-10">
+            <div className="row">
+                <div class="col-md-4 mb-3 xyz">
+                    <div class="card">
                         <div class="card-body">
-
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Course Code</th>
-
-                                        <th scope="col">Credit</th>
-                                        <th scope="col">CGPA</th>
-                                    </tr>
-                                </thead>
-                                {first && <tbody>
-                                    {one.map((res) => (
-                                        <tr>
-                                            <th>{res.Course}</th>
-                                            <td>{res.Credit}</td>
-                                            <td>{res.CGPA}</td>
-
-                                        </tr>
-                                    ))}
-
-
-                                </tbody>}
-                                {Second && <tbody>
-                                    {two.map((res) => (
-                                        <tr>
-                                            <th>{res.Course}</th>
-                                            <td>{res.Credit}</td>
-                                            <td>{res.CGPA}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>}
-                                {Third && <tbody>
-                                    {three.map((res) => (
-                                        <tr>
-                                            <th>{res.Course}</th>
-                                            <td>{res.Credit}</td>
-                                            <td>{res.CGPA}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>}
-                                {Fourth && <tbody>
-                                    {four.map((res) => (
-                                        <tr>
-                                            <th>{res.Course}</th>
-                                            <td>{res.Credit}</td>
-                                            <td>{res.CGPA}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>}
-                                {Fifth && <tbody>
-                                    {five.map((res) => (
-                                        <tr>
-                                            <th>{res.Course}</th>
-                                            <td>{res.Credit}</td>
-                                            <td>{res.CGPA}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>}
-                                {Sixth
-                                    && <tbody>
-                                        {six.map((res) => (
-                                            <tr>
-                                                <th>{res.Course}</th>
-                                                <td>{res.Credit}</td>
-                                                <td>{res.CGPA}</td>
-                                            </tr>
-                                        ))}
-                                    </tbody>}
-                                {seventh && <tbody>
-                                    {seven.map((res) => (
-                                        <tr>
-                                            <th>{res.Course}</th>
-                                            <td>{res.Credit}</td>
-                                            <td>{res.CGPA}</td>
-                                        </tr>
-                                    ))}
-                                </tbody>}
-                                {eighth && <tbody>
-
-                                    <tr>
-
-                                    </tr>
-
-                                </tbody>}
-
-
-                            </table>
-
-
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src={Profile} alt="Admin" class="rounded-circle" width="100" />
+                                <div class="mt-3">
+                                    <h4 className='text-2xl font-serif'></h4>
+                                    <h4 className='text-xl font-serif'></h4>
+                                    <h4 className='text-xl font-serif'>Exam Controler </h4>
+                                    <p class="text-3xl font-serif"></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </body>
-            )}
-        </>
+                    <div class="card mt-3">
+                        <ul class="list-group list-group-flush">
+                            {/* <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"></h6>
+                                <span class="text-secondary"></span>
+                            </li> */}
+                            {/* <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <NavLink to="/EdiProfile"><a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit Profile</a></NavLink>
+                                    </div>
+                                </div>
+                            </li> */}
+                            {/* <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <form action="" encType="multipart/form-data">
+                                                <input type="file" name="avater" id="" placeholder='Please Upload Your File' />
+                                                <input type="submit" value="submit" name="submit" placeholder='submit' />
+                                            </form>
+                                        </div>
+                                    </div>
+                                </li> */}
+                        </ul>
+                    </div>
+
+                </div>
+                <div className="col-md-8">
+                    <div className="row">
+                        <div className="col-md-4">
+                            <div class="card text-white bg-info" >
+                                <div class="card-header">Total Assign Course</div>
+                                <div class="card-body">
+                                    <h5 class="card-title">{ }</h5>
+                                    <p class="card-text"><img src="https://cdn.pixabay.com/photo/2016/03/31/20/40/arrow-1295953_960_720.png" alt="" /></p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <div class="card text-white  bg-secondary" >
+                                <div class="card-header">Total Students</div>
+                                <div class="card-body">
+                                    <h5 class="card-title"></h5>
+                                    <p class="card-text"><img src="https://cdn.pixabay.com/photo/2016/03/31/20/40/arrow-1295953_960_720.png" alt="" /></p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div className='row'>
+                        <div className="col-md-7">
+                            <h5>Regular</h5>
+                            <Line percent="" strokeWidth={2} strokeColor="#E97D30" />
+                            <h5>Retake</h5>
+                            <Line percent="" strokeWidth={2} strokeColor="#62B170" />
+
+                        </div>
+                        <div className="col-md-5">
+                            <PieChart data={[
+                                {
+                                    type: "Regular",
+                                    value: 10,
+                                    color: "#E97D30"
+                                },
+                                {
+                                    type: "Retake",
+                                    value: 10,
+                                    color: "#62B170"
+                                }
+                            ]} />
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div class="card text-center mt-20">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active btn" href="#" onClick={handleOne}>
+                                1/1
+                            </a>
+                        </li>
+                        <li class="nav-item ">
+                            <a class="nav-link active btn" href="#" onClick={handleTwo}>
+                                1/2
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active  btn" href="#" onClick={handlethree}>
+                                2/1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active  btn" href="#" onClick={handleTfour}>
+                                2/2
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active  btn" href="#" onClick={handlefive}>
+                                3/1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active  btn" href="#" onClick={handleSix}>
+                                3/2
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active  btn" href="#" onClick={handleSeven}>
+                                4/1
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active  btn" href="#" onClick={handleEight}>
+                                4/2
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+
+                                <th scope="col">Roll</th>
+                                <th scope="col">Registration</th>
+                                <th scope="col">Batch</th>
+                                <th scope="col">View Result</th>
+                            </tr>
+                        </thead>
+                        {first && <tbody>
+                            {one.map((res) => (
+                                <tr>
+                                    <th>{res.name}</th>
+                                    <td>{res.roll}</td>
+                                    <td>{res.registration_number}</td>
+                                    <td>{res.batch}</td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.roll}`}>  View Result</Link></td>
+                                </tr>
+                            ))}
+
+
+                        </tbody>}
+                        {Second && <tbody>
+                            {two.map((res) => (
+                                <tr>
+                                    <th>{res.name}</th>
+                                    <td>{res.roll}</td>
+                                    <td>{res.registration_number}</td>
+                                    <td>{res.batch}</td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.roll}`}>  View Result</Link></td>
+                                </tr>
+                            ))}
+                        </tbody>}
+                        {Third && <tbody>
+                            {three.map((res) => (
+                                <tr>
+                                    <th>{res.name}</th>
+                                    <td>{res.roll}</td>
+                                    <td>{res.registration_number}</td>
+                                    <td>{res.batch}</td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.name}`}>  View Result</Link></td>
+                                </tr>
+                            ))}
+                        </tbody>}
+                        {Fourth && <tbody>
+                            {four.map((res) => (
+                                <tr>
+                                    <th>{res.name}</th>
+                                    <td>{res.roll}</td>
+                                    <td>{res.registration_number}</td>
+                                    <td>{res.batch}</td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.name}`}>  View Result</Link></td>
+                                </tr>
+                            ))}
+                        </tbody>}
+                        {Fifth && <tbody>
+                            {five.map((res) => (
+                                <tr>
+                                    <th>{res.name}</th>
+                                    <td>{res.roll}</td>
+                                    <td>{res.registration_number}</td>
+                                    <td>{res.batch}</td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.roll}`}>  View Result</Link></td>
+                                </tr>
+                            ))}
+                        </tbody>}
+                        {Sixth
+                            && <tbody>
+                                {six.map((res) => (
+                                    <tr>
+                                        <th>{res.name}</th>
+                                        <td>{res.roll}</td>
+                                        <td>{res.registration_number}</td>
+                                        <td>{res.batch}</td>
+                                        <td>        <Link to={`/viewResult/${res.current_semister}/${res.roll}`}>  View Result</Link></td>
+                                    </tr>
+                                ))}
+                            </tbody>}
+                        {seventh && <tbody>
+                            {seven.map((res) => (
+                                <tr>
+                                    <th>{res.name}</th>
+                                    <td>{res.roll}</td>
+                                    <td>{res.registration_number}</td>
+                                    <td>{res.batch}</td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.roll}`}>  View Result</Link></td>
+                                </tr>
+                            ))}
+                        </tbody>}
+                        {eighth && <tbody>
+                            {eight.map((res) => (
+                                <tr>
+                                    <th>{res.name}</th>
+                                    <td>{res.roll}</td>
+                                    <td>{res.registration_number}</td>
+                                    <td>{res.batch}</td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.roll}`}>  View Result</Link></td>
+                                </tr>
+                            ))}
+                        </tbody>}
+
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
     );
 };
 
