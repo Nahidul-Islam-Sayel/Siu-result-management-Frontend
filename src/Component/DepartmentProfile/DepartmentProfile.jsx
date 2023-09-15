@@ -119,7 +119,7 @@ const AdminProfile = () => {
                                 <div class="card text-white  bg-secondary" >
                                     <div class="card-header">Total Students</div>
                                     <div class="card-body">
-                                        <h5 class="card-title">{allUser.length}</h5>
+                                        <h5 class="card-title">50</h5>
                                         <p class="card-text"><img src="https://cdn.pixabay.com/photo/2016/03/31/20/40/arrow-1295953_960_720.png" alt="" /></p>
                                     </div>
 
@@ -129,27 +129,27 @@ const AdminProfile = () => {
                         </div>
                         <div className='row'>
                             <div className="col-md-7">
-                                <h5>Doctor</h5>
+                                <h5>Regular</h5>
                                 <Line percent={allTeacher.length} strokeWidth={2} strokeColor="#E97D30" />
-                                <h5>User</h5>
+                                <h5>Retake</h5>
                                 <Line percent={setAllUser.length} strokeWidth={2} strokeColor="#62B170" />
-                                <h5>Blood Donner And Volunteer</h5>
+                                <h5>Readmission</h5>
                                 <Line percent={setAllUserRep.length} strokeWidth={2} strokeColor="#F1AF20" />
                             </div>
                             <div className="col-md-5">
                                 <PieChart data={[
                                     {
-                                        type: "Doctor",
-                                        value: 10,
+                                        type: "Regular",
+                                        value: 40,
                                         color: "#E97D30"
                                     },
                                     {
-                                        type: "User",
-                                        value: 10,
+                                        type: "Retake",
+                                        value: 20,
                                         color: "#62B170"
                                     },
                                     {
-                                        type: "Report",
+                                        type: "Readmission",
                                         value: 10,
                                         color: "#F1AF20"
                                     }

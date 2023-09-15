@@ -64,7 +64,7 @@ const Nevbar = () => {
                                     About
                                 </Link>
 
-                                {(sessionStorage.getItem("Department") || login === true) ?
+                                {(sessionStorage.getItem("Department") || Adminlogin === true) ?
                                     (<>
                                         <Link to="/DepartmentCSE" className="block py-4 text-white px-2 md:p-0   font-bold">
                                             Profile
@@ -110,16 +110,29 @@ const Nevbar = () => {
 
                                             </>)
                                             :
-                                            (<><Link to="/login" className="block py-4 text-white px-2 md:p-0   font-bold">
-                                                Login
-                                            </Link>
-                                                <Link to=""
-                                                    href="#"
-                                                    className="block py-4 text-white px-2 md:p-0   font-bold"
-                                                >
-                                                    Contact Us
-                                                </Link></>
-                                            )
+                                            (sessionStorage.getItem("StudentLogin") || login === true) ?
+                                                (<>
+                                                    <Link to="/StudentsProfile" className="block py-4 text-white px-2 md:p-0   font-bold">
+                                                        Profile
+                                                    </Link>
+
+
+                                                    <Link to="/" className="block py-4 text-white px-2 md:p-0   font-bold" onClick={logout}>
+                                                        Logout
+                                                    </Link>
+
+                                                </>)
+                                                :
+                                                (<><Link to="/login" className="block py-4 text-white px-2 md:p-0   font-bold">
+                                                    Login
+                                                </Link>
+                                                    <Link to=""
+                                                        href="#"
+                                                        className="block py-4 text-white px-2 md:p-0   font-bold"
+                                                    >
+                                                        Contact Us
+                                                    </Link></>
+                                                )
 
 
 

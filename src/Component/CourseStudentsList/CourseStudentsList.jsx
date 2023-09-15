@@ -5,8 +5,6 @@ const CourseStudentsList = () => {
     const { course, credit } = useParams();
     const [Students, setStudents] = useState([])
     useEffect(() => {
-
-
         fetch(`http://localhost:5000/Teachers/Students?semester=${id}`, {
             method: 'GET',
             headers: {

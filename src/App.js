@@ -20,6 +20,7 @@ import Home from "./Component/Home/Home";
 import Nevbar from './Component/Nevbar/Nevbar';
 import PublisedNumber from "./Component/PublisedNumber/PublisedNumber";
 import Registration from "./Component/RegistrationFrom/Registration";
+import StudentsProfile from './Component/StudentsProfile/StudentsProfile.jsx';
 import TeachersProfile from "./Component/TeachersProfile/TeachersProfile";
 import ViewTeachersProfile from "./Component/ViewTeachersProfile/ViewTeachersProfile";
 export const userContext = createContext();
@@ -40,7 +41,7 @@ function App() {
        <Routes>
         
         
-        {/* {(sessionStorage.getItem('StudentsID')||login===true)? <Route path="/StudentsProfile" element={ <StudentsProfile/>}></Route> :<Route path="/StudentsProfile" element={ <LoginSection/>}>     </Route> }   */}
+        {(sessionStorage.getItem('StudentsID')||login===true)? <Route path="/StudentsProfile" element={<StudentsProfile/> }></Route> :<Route path="/StudentsProfile" element={ <LoginSection/>}>     </Route> }  
        
        {(sessionStorage.getItem("DepartmentLogin")||Adminlogin===true)?<> <Route path="/ViewProfile/:id" element={<ViewTeachersProfile/> }/> <Route path="/RegistrationForm" element={<Registration/>}/> <Route path="/CourseAdd" element={<AddCourse/>}/> <Route path="/CourseList" element={<CourseList/>}></Route> <Route path="/DepartmentCSE" element={ <DepartmentProfile/> }/>   <Route path="/CourseList/:id"  element={ <Edit/> }/>  <Route path="/DeleteteachersProfile/:id"  element={ <DeleteProfile/> }/>    <Route path="/AssignCourse" element={<AssignCourse/> }/> <Route path="/DeleteCourse/:id" element={ <DeleteCourse/>}/>   <Route path="/EditTeachersProfile/:id" element={ <EditTeachersProfile/> }/>  </> :<Route path="/login" element={ <LoginSection/>}>     </Route> }  
        {(sessionStorage.getItem("TeachersLogin")||teacherslogin===true)?<>  <Route path="/EditNumber/:id" element={<EditNumber/> }/> <Route path="/publisedResult/:course" element={<PublisedNumber/> }/> <Route path="/viewstudentsList/:id/:course/:credit" element={<CourseStudentsList/> }/>  <Route path="/AddNumber/:course/:id/:semester/:name/:registation/:credit" element={<AddNumber/> }/>  <Route path="/TeachersProfile" element={<TeachersProfile/>} /> </> :<Route path="/login" element={ <LoginSection/>}>     </Route> }  

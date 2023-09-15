@@ -60,16 +60,38 @@ const LoginSection = () => {
     }
     const [departmentPro, setDepartmentPro] = useState(false);
     const [teachersPro, setTeachersPro] = useState(false);
+    const [studentsPro, setstudentsPro] = useState(false);
     const [visible, setVisible] = useState(false);
     const [visibleR, setVisibleR] = useState(false);
 
-    // const userSubmit = (e) => {
-    //     e.preventDefault();
-    //     const { StudentsID, password_1 } = newStudent;
-    //     console.log(StudentsID, password_1)
-    //     // axios.post('http://localhost:5000/Singup/login', newStudent)
-    //     //     .then(res => ((res.data.error) ? alert(res.data.error) : (setStudents(false), sessionStorage.setItem('StudentsID', StudentsID), sessionStorage.setItem("Token", res.data.access_token), setLogin(true))));
-    // }
+    const userSubmit = (e) => {
+        e.preventDefault();
+        const { StudentsID, password_1 } = newStudent;
+        console.log(StudentsID, password_1)
+        if (StudentsID && password_1) {
+            axios.post('http://localhost:5000/Singup/login', newStudent)
+                .then(res => {
+                    if (res.data.error) {
+                        console.log('Error:', res.data.error);
+                        setVisibleR(true);
+                        console.log('hello i am here');
+                    }
+                    else {
+                        sessionStorage.setItem('StudentsID', StudentsID);
+                        sessionStorage.setItem('StudentLogin', true);
+                        sessionStorage.setItem('Token', res.data.access_token);
+                        console.log('Success:', res.data);
+                        setstudentsPro(true)
+
+
+                        setVisible(true);
+                        console.log(visible);
+                        console.log('i am not here');
+                    }
+                });
+        }
+
+    }
 
     const AdminLogin = (e) => {
         e.preventDefault();
@@ -195,13 +217,20 @@ const LoginSection = () => {
         }, 1500);
     }, [teachersPro, navigate])
     useEffect(() => {
-
         setTimeout(() => {
             controlerPro && navigate("/ControlerProfile", { replace: true });
             controlerPro && setControler(true);
 
         }, 1500);
     }, [controlerPro, navigate])
+    useEffect(() => {
+
+        setTimeout(() => {
+            studentsPro && navigate("/StudentsProfile", { replace: true });
+            studentsPro && setLogin(true);
+
+        }, 1500);
+    }, [studentsPro, navigate])
     return (
         <div class="flex items-center min-h-screen p-4 bg-gray-100 justify-center">
             <div
@@ -238,7 +267,7 @@ const LoginSection = () => {
                     <h3 class="my-4 text-2xl font-semibold text-gray-700">Students Login</h3>
                     <form action="#" class="flex flex-col space-y-5">
                         <div class="flex flex-col space-y-1">
-                            <label for="email" class="text-sm font-semibold text-gray-500">Your Name</label>
+                            <label for="email" class="text-sm font-semibold text-gray-500">Your Roll</label>
                             <input
                                 type="number"
                                 id="StudentsID"
@@ -275,7 +304,7 @@ const LoginSection = () => {
                             <button
                                 type="submit"
                                 class="w-full px-4 py-2 text-lg font-semibold text-white transition-colors duration-300 bg-cyan-600  rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring-blue-200 focus:ring-4"
-                                onClick=""
+                                onClick={userSubmit}
                             >
                                 Log in
                             </button>

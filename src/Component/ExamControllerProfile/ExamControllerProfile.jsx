@@ -17,7 +17,6 @@ const ExamControllerProfile = () => {
     const [six, setSix] = useState([]);
     const [seven, setSeve] = useState([]);
     const [eight, setEight] = useState([]);
-
     const [first, setFirst] = useState(true);
     const [Second, setScond] = useState(false);
     const [Third, setThird] = useState(false);
