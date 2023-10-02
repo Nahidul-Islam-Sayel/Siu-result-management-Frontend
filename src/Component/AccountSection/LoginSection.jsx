@@ -316,9 +316,10 @@ const LoginSection = () => {
                                 <span class="h-px bg-gray-400 w-14"></span>
                             </span>
                             <div class="flex flex-col space-y-4">
-                                <a
+                                <button
                                     href="#"
                                     className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-gray-800 rounded-md group hover:bg-gray-800 focus:outline-none"
+                                    onClick={() => { seTeachers(true); setStudents(false); setAdmin(false); setController(false); setAccountSection(false) }}
                                 >
                                     <span>
                                         <svg
@@ -333,11 +334,12 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white" onClick={() => { seTeachers(true); setStudents(false); setAdmin(false); setController(false); setAccountSection(false) }}>I am a  teacher</span>
-                                </a>
-                                <a
+                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white" >I am a  teacher</span>
+                                </button>
+                                <button
                                     href="#"
                                     className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(false); setAdmin(true); setController(false); setAccountSection(false) }}
                                 >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
@@ -346,8 +348,8 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(false); setAdmin(true); setController(false); setAccountSection(false) }}>Admin</span>
-                                </a>
+                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" >Admin</span>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -405,9 +407,10 @@ const LoginSection = () => {
                                 <span class="h-px bg-gray-400 w-14"></span>
                             </span>
                             <div class="flex flex-col space-y-4">
-                                <a
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-gray-800 rounded-md group hover:bg-gray-800 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(true); setAdmin(false); setController(false); setAccountSection(false) }}
                                 >
                                     <span>
                                         <svg
@@ -422,11 +425,12 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(true); setAdmin(false); setController(false); setAccountSection(false) }}>I am a  Students</span>
-                                </a>
-                                <a
+                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white">I am a  Students</span>
+                                </button>
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(false); setAdmin(true); setAccountSection(false); setController(false) }}
                                 >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
@@ -435,8 +439,8 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(false); setAdmin(true); setAccountSection(false); setController(false) }}>Admin</span>
-                                </a>
+                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" >Admin</span>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -502,10 +506,10 @@ const LoginSection = () => {
                                 <span class="h-px bg-gray-400 w-14"></span>
                             </span>
                             <div class="flex flex-col space-y-4">
-                                <a
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-gray-800 rounded-md group hover:bg-gray-800 focus:outline-none"
-                                >
+                                    onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setController(true); setAccountSection(false) }}  >
                                     <span>
                                         <svg
                                             class="w-5 h-5 text-gray-800 fill-current group-hover:text-white"
@@ -519,12 +523,12 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setController(true); setAccountSection(false) }}>Exam Controller</span>
-                                </a>
-                                <a
+                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white" >Exam Controller</span>
+                                </button>
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
-                                >
+                                    onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setAccountSection(true); setController(false) }} >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
                                             {/* <path
@@ -532,12 +536,12 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setAccountSection(true); setController(false) }}>Account Section</span>
-                                </a>
-                                <a
+                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" >Account Section</span>
+                                </button>
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
-                                >
+                                    onClick={() => { seTeachers(false); setStudents(true); setAdmin(false); setAccountSection(false); setController(false) }} >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
                                             {/* <path
@@ -545,8 +549,8 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(true); setAdmin(false); setAccountSection(false); setController(false) }}>I am Students</span>
-                                </a>
+                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" >I am Students</span>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -604,9 +608,10 @@ const LoginSection = () => {
                                 <span class="h-px bg-gray-400 w-14"></span>
                             </span>
                             <div class="flex flex-col space-y-4">
-                                <a
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-gray-800 rounded-md group hover:bg-gray-800 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setController(false); setAdmin(true) }}
                                 >
                                     <span>
                                         <svg
@@ -621,11 +626,12 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setController(false); setAdmin(true) }}>Department</span>
-                                </a>
-                                <a
+                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white">Department</span>
+                                </button>
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setAccountSection(true); setController(false) }}
                                 >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
@@ -634,11 +640,12 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setAccountSection(true); setController(false) }}>Account Section</span>
-                                </a>
-                                <a
+                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" >Account Section</span>
+                                </button>
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(true); setAdmin(false); setController(false); setAdmin(false); setAccountSection(false) }}
                                 >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
@@ -647,8 +654,8 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(true); setAdmin(false); setController(false); setAdmin(false); setAccountSection(false) }}>I am Students</span>
-                                </a>
+                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" >I am Students</span>
+                                </button>
                             </div>
                         </div>
                     </form>
@@ -699,9 +706,10 @@ const LoginSection = () => {
                                 <span class="h-px bg-gray-400 w-14"></span>
                             </span>
                             <div class="flex flex-col space-y-4">
-                                <a
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-gray-800 rounded-md group hover:bg-gray-800 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(false); setController(false); setAdmin(true); setAccountSection(false) }}
                                 >
                                     <span>
                                         <svg
@@ -716,11 +724,12 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(false); setController(false); setAdmin(true); setAccountSection(false) }}>Department</span>
-                                </a>
-                                <a
+                                    <span class="text-sm font-medium text-gray-800 group-hover:text-white" >Department</span>
+                                </button>
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setController(true); setAccountSection(false) }}
                                 >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
@@ -729,11 +738,12 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(false); setAdmin(false); setController(true); setAccountSection(false) }}>Exam Controller</span>
-                                </a>
-                                <a
+                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" >Exam Controller</span>
+                                </button>
+                                <button
                                     href="#"
                                     class="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
+                                    onClick={() => { seTeachers(false); setStudents(true); setAdmin(false); setController(false); setAccountSection(false) }}
                                 >
                                     <span>
                                         <svg class="text-blue-500 group-hover:text-white" width="20" height="20" fill="currentColor">
@@ -742,8 +752,8 @@ const LoginSection = () => {
                                             ></path> */}
                                         </svg>
                                     </span>
-                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" onClick={() => { seTeachers(false); setStudents(true); setAdmin(false); setController(false); setAccountSection(false) }}>I am Students</span>
-                                </a>
+                                    <span class="text-sm font-medium text-blue-500 group-hover:text-white" >I am Students</span>
+                                </button>
                             </div>
                         </div>
                     </form>

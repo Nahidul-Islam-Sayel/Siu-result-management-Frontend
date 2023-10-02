@@ -67,6 +67,7 @@ const StudentsProfile = () => {
                 res.forEach((item) => {
                     if (item.semester === "1") {
                         setSemester1(item);
+
                     } else if (item.semester === "2") {
                         setSemester2(item);
                     } else if (item.semester === "3") {
@@ -107,6 +108,7 @@ const StudentsProfile = () => {
                 let filteredResult = res.filter((item) => item.Semester === 1);
                 if (filteredResult.length > 0) {
                     setOne(filteredResult);
+
                 }
                 filteredResult = res.filter((item) => item.Semester === 2);
                 if (filteredResult.length > 0) {

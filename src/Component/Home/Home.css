@@ -28,6 +28,7 @@
   font-family: "Poppins SemiBold";
   margin-left: 30px;
 }
+
 li {
   color: red;
   size: 20px;
@@ -134,6 +135,7 @@ h4 {
   background: linear-gradient(rgba(0, 0, 0, 0.333), rgba(0, 0, 0, 0.642)),
     url(../../asset/Image/graduate.jpg) center/cover no-repeat fixed;
   min-height: 40vh;
+  width: 100%;
   color: white;
 }
 

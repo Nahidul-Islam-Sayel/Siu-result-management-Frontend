@@ -146,37 +146,39 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-3 box1">
-          <div className="deatext">
-            <div className="circle"> <FcKindle className='icon ml-3' /></div>
-            <h5>Special Education</h5>
-            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.
-            </p>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-3 box1">
+            <div className="deatext">
+              <div className="circle"> <FcKindle className='icon ml-3' /></div>
+              <h5>Special Education</h5>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="col-md-3 box2">
-          <div className="deatext">
-            <div className="circle"> <FcViewDetails className='icon  ml-3' /></div>
-            <h5>Book & Library</h5>
-            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.
-            </p>
+          <div className="col-md-3 box2">
+            <div className="deatext">
+              <div className="circle"> <FcViewDetails className='icon  ml-3' /></div>
+              <h5>Book & Library</h5>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="col-md-3 box3">
-          <div className="deatext">
-            <div className="circle"> <FcDocument className='icon ml-3' /></div>
-            <h5>Certification</h5>
-            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.
-            </p>
+          <div className="col-md-3 box3">
+            <div className="deatext">
+              <div className="circle"> <FcDocument className='icon ml-3' /></div>
+              <h5>Certification</h5>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.
+              </p>
+            </div>
           </div>
-        </div>
-        <div className="col-md-3 box4">
-          <div className="deatext">
-            <div className="circle"> <FcManager className='icon ml-3' /></div>
-            <h5>Certified Teachers</h5>
-            <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.
-            </p>
+          <div className="col-md-3 box4">
+            <div className="deatext">
+              <div className="circle"> <FcManager className='icon ml-3' /></div>
+              <h5>Certified Teachers</h5>
+              <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic.
+              </p>
+            </div>
           </div>
         </div>
       </div>
