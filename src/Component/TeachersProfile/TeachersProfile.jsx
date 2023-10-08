@@ -58,27 +58,7 @@ const TeachersProfile = () => {
                                 <span class="text-secondary">{teachersBackground[0].email && teachersBackground[0].email}</span>
                             </li>
 
-                            {/* <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <h6 class="mb-0"></h6>
-                                <span class="text-secondary"></span>
-                            </li> */}
-                            {/* <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <NavLink to="/EdiProfile"><a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit Profile</a></NavLink>
-                                    </div>
-                                </div>
-                            </li> */}
-                            {/* <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <form action="" encType="multipart/form-data">
-                                                <input type="file" name="avater" id="" placeholder='Please Upload Your File' />
-                                                <input type="submit" value="submit" name="submit" placeholder='submit' />
-                                            </form>
-                                        </div>
-                                    </div>
-                                </li> */}
+
                         </ul>
                     </div>
 
