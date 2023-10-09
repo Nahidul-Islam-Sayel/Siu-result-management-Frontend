@@ -40,10 +40,7 @@ const Edit = () => {
 
     const { id } = useParams();
     const userSubmit = (e) => {
-
         e.preventDefault();
-
-        console.log(id)
         const {
             TeachersName
 
@@ -69,7 +66,6 @@ const Edit = () => {
                     if (res.data.message === "Todo was updated successfully!") {
                         setVisible(true);
                     } else {
-                        console.log(res.data.message);
                         setVisibleR(true);
                     }
                 });

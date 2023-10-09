@@ -54,35 +54,36 @@ const ExamControllerProfile = () => {
         )
             .then((res) => res.json())
             .then((res) => {
-                let filteredResult = res.filter((item) => item.current_semister == "1");
+                let filteredResult = res.filter((item) => item.current_semister === 1);
                 if (filteredResult.length > 0) {
                     setOne(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.current_semister == "2");
+                filteredResult = res.filter((item) => item.current_semister === 2);
                 if (filteredResult.length > 0) {
                     setTwo(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.current_semister == "3");
+                filteredResult = res.filter((item) => item.current_semister === 3);
                 if (filteredResult.length > 0) {
                     setThree(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.current_semister == "4");
+                filteredResult = res.filter((item) => item.current_semister === 4);
                 if (filteredResult.length > 0) {
                     setFour(filteredResult);
+                    filteredResult.map(res => console.log(res))
                 }
-                filteredResult = res.filter((item) => item.current_semister == "5");
+                filteredResult = res.filter((item) => item.current_semister === 5);
                 if (filteredResult.length > 0) {
                     setFive(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.current_semister == "6");
+                filteredResult = res.filter((item) => item.current_semister === 6);
                 if (filteredResult.length > 0) {
                     setSix(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.current_semister == "7");
+                filteredResult = res.filter((item) => item.current_semister === 7);
                 if (filteredResult.length > 0) {
                     setSeve(filteredResult);
                 }
-                filteredResult = res.filter((item) => item.current_semister == "8");
+                filteredResult = res.filter((item) => item.current_semister === 8);
                 if (filteredResult.length > 0) {
                     setEight(filteredResult);
                 }
@@ -269,42 +270,42 @@ const ExamControllerProfile = () => {
                 <div class="card-header">
                     <ul class="nav nav-tabs card-header-tabs">
                         <li class="nav-item">
-                            <a class="nav-link active btn" href="#" onClick={handleOne}>
+                            <a className="nav-link active btn" href="#" onClick={handleOne}>
                                 1/1
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link active btn" href="#" onClick={handleTwo}>
+                            <a className="nav-link active btn" href="#" onClick={handleTwo}>
                                 1/2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  btn" href="#" onClick={handlethree}>
+                            <a className="nav-link active  btn" href="#" onClick={handlethree}>
                                 2/1
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  btn" href="#" onClick={handleTfour}>
+                            <a className="nav-link active  btn" href="#" onClick={handleTfour}>
                                 2/2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  btn" href="#" onClick={handlefive}>
+                            <a className="nav-link active  btn" href="#" onClick={handlefive}>
                                 3/1
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  btn" href="#" onClick={handleSix}>
+                            <a className="nav-link active  btn" href="#" onClick={handleSix}>
                                 3/2
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  btn" href="#" onClick={handleSeven}>
+                            <a className="nav-link active  btn" href="#" onClick={handleSeven}>
                                 4/1
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active  btn" href="#" onClick={handleEight}>
+                            <a className="nav-link active  btn" href="#" onClick={handleEight}>
                                 4/2
                             </a>
                         </li>
@@ -354,7 +355,7 @@ const ExamControllerProfile = () => {
                                     <td>{res.roll}</td>
                                     <td>{res.registration_number}</td>
                                     <td>{res.batch}</td>
-                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.name}`}>  View Result</Link></td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.roll}`}>  View Result</Link></td>
                                 </tr>
                             ))}
                         </tbody>}
@@ -365,7 +366,7 @@ const ExamControllerProfile = () => {
                                     <td>{res.roll}</td>
                                     <td>{res.registration_number}</td>
                                     <td>{res.batch}</td>
-                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.name}`}>  View Result</Link></td>
+                                    <td>        <Link to={`/viewResult/${res.current_semister}/${res.roll}`}>  View Result</Link></td>
                                 </tr>
                             ))}
                         </tbody>}

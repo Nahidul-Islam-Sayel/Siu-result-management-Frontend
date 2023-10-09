@@ -32,7 +32,7 @@ const CourseList = () => {
         if (semesterOne.length > 0) {
             acc.push({ ...course, semester: semesterOne });
         }
-        console.log(acc)
+
         return acc;
 
     }, []);
@@ -41,7 +41,7 @@ const CourseList = () => {
         if (semesterOne.length > 0) {
             acc.push({ ...course, semester: semesterOne });
         }
-        console.log(acc)
+
         return acc;
 
     }, []);
@@ -50,7 +50,7 @@ const CourseList = () => {
         if (semesterOne.length > 0) {
             acc.push({ ...course, semester: semesterOne });
         }
-        console.log(acc)
+
         return acc;
 
     }, []);
@@ -59,7 +59,7 @@ const CourseList = () => {
         if (semesterOne.length > 0) {
             acc.push({ ...course, semester: semesterOne });
         }
-        console.log(acc)
+
         return acc;
 
     }, []);
@@ -68,7 +68,7 @@ const CourseList = () => {
         if (semesterOne.length > 0) {
             acc.push({ ...course, semester: semesterOne });
         }
-        console.log(acc)
+
         return acc;
 
     }, []);
@@ -77,7 +77,7 @@ const CourseList = () => {
         if (semesterOne.length > 0) {
             acc.push({ ...course, semester: semesterOne });
         }
-        console.log(acc)
+
         return acc;
 
     }, []);
@@ -86,7 +86,7 @@ const CourseList = () => {
         if (semesterOne.length > 0) {
             acc.push({ ...course, semester: semesterOne });
         }
-        console.log(acc)
+
         return acc;
 
     }, []);
@@ -95,7 +95,7 @@ const CourseList = () => {
         if (semesterOne.length > 0) {
             acc.push({ ...course, semester: semesterOne });
         }
-        console.log(acc)
+
         return acc;
 
     }, []);

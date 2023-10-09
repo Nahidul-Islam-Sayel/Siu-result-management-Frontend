@@ -128,7 +128,7 @@ const TeachersProfile = () => {
                     </thead>
                     <tbody>
 
-                        {Course.map(data => (
+                        {Course.length > 0 && Course.map(data => (
                             <tr key={data._id}>
                                 <td>{data.courseName}</td>
                                 <td>

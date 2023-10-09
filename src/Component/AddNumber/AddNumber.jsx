@@ -25,7 +25,7 @@ const AddNumber = () => {
             ...number,
             [name]: value,
         });
-        console.log(name, value);
+
     };
     const userSubmit = (e) => {
         e.preventDefault();
@@ -53,10 +53,10 @@ const AddNumber = () => {
                 )
                 .then((res) => {
                     if (res.data.message === "Marks Added Successfully") {
-                        console.log(res.data.message)
+
                         setVisible(true);
                     } else {
-                        console.log(res.data.message)
+
                         setVisibleR(true);
                     }
                 });

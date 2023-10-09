@@ -3,7 +3,6 @@ import { Link, useParams } from 'react-router-dom';
 const PublisedNumber = () => {
     const { id } = useParams();
     const { course, semester } = useParams();
-    console.log(course, semester)
     const [Students, setStudents] = useState([])
     useEffect(() => {
 

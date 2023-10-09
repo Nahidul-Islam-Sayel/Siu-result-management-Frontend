@@ -5,7 +5,7 @@ import { Link, useParams } from 'react-router-dom';
 const DeleteProfile = () => {
     const { id } = useParams();
     const deleteitem = () => {
-        console.log(id)
+
         fetch(`http://localhost:5000/LoginDepartmentCSE/DeleteTeachers/${id}`, {
             method: 'Delete'
         })

@@ -21,7 +21,7 @@ const AddCourse = () => {
             ...newCourse,
             [name]: value,
         });
-        console.log(name, value);
+
     };
     const userSubmit = (e) => {
         e.preventDefault();
@@ -52,7 +52,7 @@ const AddCourse = () => {
 
                         setVisible(true);
                     } else {
-                        console.log(res.data.message)
+
                         setVisibleR(true);
                     }
                 });

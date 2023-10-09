@@ -67,26 +67,25 @@ const LoginSection = () => {
     const userSubmit = (e) => {
         e.preventDefault();
         const { StudentsID, password_1 } = newStudent;
-        console.log(StudentsID, password_1)
+
         if (StudentsID && password_1) {
             axios.post('http://localhost:5000/Singup/login', newStudent)
                 .then(res => {
                     if (res.data.error) {
-                        console.log('Error:', res.data.error);
+
                         setVisibleR(true);
-                        console.log('hello i am here');
+
                     }
                     else {
                         sessionStorage.setItem('StudentsID', StudentsID);
                         sessionStorage.setItem('StudentLogin', true);
                         sessionStorage.setItem('Token', res.data.access_token);
-                        console.log('Success:', res.data);
+
                         setstudentsPro(true)
 
 
                         setVisible(true);
-                        console.log(visible);
-                        console.log('i am not here');
+
                     }
                 });
         }
@@ -100,21 +99,19 @@ const LoginSection = () => {
             axios.post('http://localhost:5000/LoginDepartmentCSE/login', department)
                 .then(res => {
                     if (res.data.error) {
-                        console.log('Error:', res.data.error);
+
                         setVisibleR(true);
-                        console.log('hello i am here');
+
                     }
                     else {
                         sessionStorage.setItem('Department', Department);
                         sessionStorage.setItem('DepartmentLogin', true);
                         sessionStorage.setItem('Token', res.data.access_token);
-                        console.log('Success:', res.data);
+
                         setDepartmentPro(true);
-                        console.log(departmentPro);
+
                         setVisible(true);
 
-                        console.log(visible);
-                        console.log('i am not here');
 
 
                     }
@@ -128,21 +125,20 @@ const LoginSection = () => {
             axios.post('http://localhost:5000/Teachers/login', TeachersInfo)
                 .then(res => {
                     if (res.data.error) {
-                        console.log('Error:', res.data.error);
+
                         setVisibleR(true);
-                        console.log('hello i am here');
+
                     }
                     else {
                         sessionStorage.setItem('Teachers', name);
                         sessionStorage.setItem('TeachersLogin', true);
                         sessionStorage.setItem('Token', res.data.access_token);
-                        console.log('Success:', res.data);
+
                         setTeachersPro(true);
-                        console.log(teachersPro)
+
                         setVisible(true);
 
-                        console.log(visible);
-                        console.log('i am not here');
+
 
 
                     }
@@ -152,28 +148,26 @@ const LoginSection = () => {
     const ControlerLogin = (e) => {
         e.preventDefault();
         const { name, password } = ControlerInfo;
-        console.log(name, password)
+
         if (name && password) {
             axios.post('http://localhost:5000/Controler/login', ControlerInfo)
                 .then(res => {
                     if (res.data.error) {
-                        console.log('Error:', res.data.error);
+
                         setVisibleR(true);
-                        console.log('hello i am here');
+
                     }
                     else {
                         sessionStorage.setItem('ExamControler', name);
                         sessionStorage.setItem('ExamControler', true);
 
                         sessionStorage.setItem('Token', res.data.access_token);
-                        console.log('Success:', res.data);
+
 
                         setControlerPro(true)
-                        console.log(Controler)
+
                         setVisible(true);
 
-
-                        console.log('i am not here');
 
 
                     }

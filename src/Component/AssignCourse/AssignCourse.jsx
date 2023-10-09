@@ -39,7 +39,7 @@ const AssignCourse = () => {
         let selectedCourse;
         if (name === "CourseName") {
             selectedCourse = courseData.find(course => course.CourseName === value);
-            console.log(selectedCourse.CreditHours)
+
             setnewAssignCourses((prevState) => ({
                 ...prevState,
                 "courseHoure": selectedCourse.CreditHours
@@ -137,7 +137,7 @@ const AssignCourse = () => {
                     if (res.data.message === "Signup was successful!") {
                         setVisible(true);
                     } else {
-                        console.log(res.data.message);
+
                         setVisibleR(true);
                     }
                 });
@@ -175,7 +175,7 @@ const AssignCourse = () => {
                     if (res.data.message === "Signup was successful!") {
                         setVisible(true);
                     } else {
-                        console.log(res.data.message);
+
                         setVisibleR(true);
                     }
                 });

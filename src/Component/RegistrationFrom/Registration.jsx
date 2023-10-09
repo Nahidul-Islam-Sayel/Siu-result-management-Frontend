@@ -44,7 +44,7 @@ const Registration = () => {
             ...newUser,
             [name]: value,
         });
-        console.log(name, value);
+
     };
     const userSubmit = (e) => {
         e.preventDefault();
@@ -90,7 +90,7 @@ const Registration = () => {
 
                         setVisible(true);
                     } else {
-                        console.log(res.data.message)
+
                         setVisibleR(true);
                     }
                 });
@@ -103,7 +103,7 @@ const Registration = () => {
     };
     const TeachersSubmit = (e) => {
         e.preventDefault();
-        console.log('i am hitted')
+
         const {
             name,
             username,
@@ -139,7 +139,7 @@ const Registration = () => {
                     if (res.data.message === "Signup was successful!") {
                         setVisible(true);
                     } else {
-                        console.log(res.data.message)
+
                         setVisibleR(true);
                     }
                 });

@@ -66,7 +66,7 @@ const StudentsProfile = () => {
         )
             .then((res) => res.json())
             .then((res) => {
-                console.log(res);
+
                 res.forEach((item) => {
                     if (item.semester === "1") {
                         setSemester1(item);
@@ -357,7 +357,7 @@ const StudentsProfile = () => {
                                             const courseHoure = parseFloat(res.CourseHoure);
                                             credit += courseHoure;
                                             calculatedTotal += (res.CGPA * courseHoure)
-                                            console.log(credit, calculatedTotal)
+
                                             return (
                                                 <tr key={res.CourseCode}>
                                                     <th>{res.CourseCode}</th>
@@ -388,7 +388,7 @@ const StudentsProfile = () => {
                                             const courseHoure = parseFloat(res.CourseHoure);
                                             credit += courseHoure;
                                             calculatedTotal += (res.CGPA * courseHoure)
-                                            console.log(credit, calculatedTotal)
+
                                             return (
                                                 <tr key={res.CourseCode}>
                                                     <th>{res.CourseCode}</th>
@@ -419,7 +419,7 @@ const StudentsProfile = () => {
                                             const courseHoure = parseFloat(res.CourseHoure);
                                             credit += courseHoure;
                                             calculatedTotal += (res.CGPA * courseHoure)
-                                            console.log(credit, calculatedTotal)
+
                                             return (
                                                 <tr key={res.CourseCode}>
                                                     <th>{res.CourseCode}</th>
@@ -450,7 +450,7 @@ const StudentsProfile = () => {
                                             const courseHoure = parseFloat(res.CourseHoure);
                                             credit += courseHoure;
                                             calculatedTotal += (res.CGPA * courseHoure)
-                                            console.log(credit, calculatedTotal)
+
                                             return (
                                                 <tr key={res.CourseCode}>
                                                     <th>{res.CourseCode}</th>
@@ -481,7 +481,7 @@ const StudentsProfile = () => {
                                             const courseHoure = parseFloat(res.CourseHoure);
                                             credit += courseHoure;
                                             calculatedTotal += (res.CGPA * courseHoure)
-                                            console.log(credit, calculatedTotal)
+
                                             return (
                                                 <tr key={res.CourseCode}>
                                                     <th>{res.CourseCode}</th>
@@ -512,7 +512,7 @@ const StudentsProfile = () => {
                                             const courseHoure = parseFloat(res.CourseHoure);
                                             credit += courseHoure;
                                             calculatedTotal += (res.CGPA * courseHoure)
-                                            console.log(credit, calculatedTotal)
+
                                             return (
                                                 <tr key={res.CourseCode}>
                                                     <th>{res.CourseCode}</th>
@@ -543,7 +543,7 @@ const StudentsProfile = () => {
                                             const courseHoure = parseFloat(res.CourseHoure);
                                             credit += courseHoure;
                                             calculatedTotal += (res.CGPA * courseHoure)
-                                            console.log(credit, calculatedTotal)
+
                                             return (
                                                 <tr key={res.CourseCode}>
                                                     <th>{res.CourseCode}</th>
@@ -575,7 +575,7 @@ const StudentsProfile = () => {
                                             const courseHoure = parseFloat(res.CourseHoure);
                                             credit += courseHoure;
                                             calculatedTotal += (res.CGPA * courseHoure)
-                                            console.log(credit, calculatedTotal)
+
                                             return (
                                                 <tr key={res.CourseCode}>
                                                     <th>{res.CourseCode}</th>

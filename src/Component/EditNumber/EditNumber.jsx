@@ -26,7 +26,7 @@ const EditNumber = () => {
         let wrong = false;
         if (Midterm && (Midterm > 20 || Midterm < 0)) wrong = true;
         if (Sessional && (Sessional > 30 || Sessional < 0)) wrong = true;
-        if (Final && (Final > 50 || Sessional < 0)) wrong = true;
+        if (Final && (Final > 50 || Final < 0)) wrong = true;
 
 
         if ((Midterm || Sessional || Final) && wrong === false) {
